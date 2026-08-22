@@ -1,7 +1,4 @@
 ﻿using Cookie_Recipe.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cookie_Recipe.Views
 {
@@ -22,8 +19,21 @@ namespace Cookie_Recipe.Views
 
         public static void PrintEnterInput()
         {
-            Console.WriteLine("Enter Id to add ingredient.");
+            Console.WriteLine("Enter Id to add ingredient. (repetitive ingredient does not count)");
             Console.WriteLine("Enter 'q' to finish .\n");
+        }
+
+
+        public static void PrintRecipe(List<Ingredient> selectedIngredients)
+        {
+            Console.WriteLine("\nRecipe added: ");
+
+            foreach (var ingredient in selectedIngredients)
+            {
+                Console.WriteLine(ingredient.GetInstruction());
+            }
+
+            Console.WriteLine();
         }
     }
 }
