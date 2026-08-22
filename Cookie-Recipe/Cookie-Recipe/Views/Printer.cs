@@ -12,10 +12,12 @@ namespace Cookie_Recipe.Views
         {
             Console.WriteLine("Create a new cookie recipe! Available ingredients are: ");
 
-            foreach (var ingredient in ingredients)
+            foreach (var ingredient in ingredients.OrderBy(i => i.Id))
             {
                 Console.WriteLine($"{ingredient.Id}. {ingredient.Name}");
             }
+
+            Console.WriteLine();
         }
 
         public static void PrintEnterInput()
