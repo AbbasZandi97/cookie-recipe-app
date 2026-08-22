@@ -2,7 +2,7 @@ namespace Cookie_Recipe.Models
 {
     internal class CoconutFlour : Ingredient
     {
-        public CoconutFlour(string name, int id) : base("Coconut Flour", 2)
+        public CoconutFlour() : base("Coconut Flour", 2)
         {
         }
 
