@@ -1,5 +1,6 @@
 ﻿using Cookie_Recipe.Input;
 using Cookie_Recipe.Models;
+using Cookie_Recipe.Views;
 
 namespace Cookie_Recipe.Controllers
 {
@@ -29,31 +30,59 @@ namespace Cookie_Recipe.Controllers
 
         public void StartApp()
         {
-            GetUserInput();
+            Printer.PrintMenu(ingredients);
+            var inputs = GetUserInput();
+
+            // mapping selected items in numbers to real ingredients
+            List<Ingredient> selectedIngredients =
+                GetSelectedIngredietns(inputs);
+
+            Printer.PrintRecipe(selectedIngredients);
+
             // other parts of the program to be completed
         }
 
-        public List<int> GetUserInput()
+        
+        public HashSet<int> GetUserInput()
         {
             int numberOfIngredients = ingredients.Count;
-            var choices = new List<int>();
-            bool keepGettingInput = true;
+            var choices = new HashSet<int>();
             
-            while (keepGettingInput)
+            
+            while (true)
             {
-                
+
+                Printer.PrintEnterInput();
                 int? id = inputHandler.ValidateIngredientId(numberOfIngredients);
+
                 if (id == null)
-                {
-                    keepGettingInput = false;
-                }
+                    break;
 
                 choices.Add(id.Value);
-                
+
             }
 
             return choices;
 
+        }
+
+        private List<Ingredient> GetSelectedIngredietns(HashSet<int> inputs)
+        {
+            var selectedIngredients = new List<Ingredient>();
+
+            foreach (int id in inputs)
+            {
+                foreach (Ingredient ingredient in ingredients)
+                {
+                    if (ingredient.Id == id)
+                    {
+                        selectedIngredients.Add(ingredient);
+                        break;
+                    }
+                }
+            }
+
+            return selectedIngredients;
         }
     }
 }
