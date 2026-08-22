@@ -29,17 +29,31 @@ namespace Cookie_Recipe.Controllers
 
         public void StartApp()
         {
-            int numberOfIngredients = ingredients.Count;
-            int? id = inputHandler.GetIngredientId(numberOfIngredients);
+            GetUserInput();
+            // other parts of the program to be completed
+        }
 
-            if (id == null)
+        public List<int> GetUserInput()
+        {
+            int numberOfIngredients = ingredients.Count;
+            var choices = new List<int>();
+            bool keepGettingInput = true;
+            
+            while (keepGettingInput)
             {
-                return;
+                
+                int? id = inputHandler.ValidateIngredientId(numberOfIngredients);
+                if (id == null)
+                {
+                    keepGettingInput = false;
+                }
+
+                choices.Add(id.Value);
+                
             }
 
-            int ingredientId = id.Value;
-            
-            // other parts of the program to be completed
+            return choices;
+
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     internal class InputHandler
     {
-        public int? GetIngredientId(int numberOfIngredients)
+        public int? ValidateIngredientId(int numberOfIngredients)
         {
             while (true)
             {
