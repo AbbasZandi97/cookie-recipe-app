@@ -1,4 +1,6 @@
-﻿namespace Cookie_Recipe.Input
+﻿using Cookie_Recipe.Views;
+
+namespace Cookie_Recipe.Input
 {
     internal class InputHandler
     {
@@ -19,6 +21,20 @@
                 if (input?.ToLower() == "q") return null;
 
                 Console.WriteLine("Please enter a valid ID.");
+            }
+        }
+
+
+        public bool DoesUserWantToSave()
+        {
+            while (true)
+            {
+                string answer = Console.ReadLine();
+
+                if (answer.ToUpper() == "Y") return true;
+                if (answer.ToUpper() == "N") return false;
+
+                Printer.PrintInvalidInput();
             }
         }
     }
