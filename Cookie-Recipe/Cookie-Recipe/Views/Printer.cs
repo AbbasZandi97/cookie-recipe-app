@@ -9,7 +9,7 @@ namespace Cookie_Recipe.Views
         {
             Console.WriteLine("Create a new cookie recipe! Available ingredients are: ");
 
-            foreach (var ingredient in ingredients.OrderBy(i => i.Id))
+            foreach (var ingredient in ingredients)
             {
                 Console.WriteLine($"{ingredient.Id}. {ingredient.Name}");
             }
