@@ -72,14 +72,7 @@ namespace Cookie_Recipe.Controllers
 
             foreach (int id in inputs)
             {
-                foreach (Ingredient ingredient in ingredients)
-                {
-                    if (ingredient.Id == id)
-                    {
-                        selectedIngredients.Add(ingredient);
-                        break;
-                    }
-                }
+                selectedIngredients.Add(ingredients[id - 1]);
             }
 
             return selectedIngredients;
