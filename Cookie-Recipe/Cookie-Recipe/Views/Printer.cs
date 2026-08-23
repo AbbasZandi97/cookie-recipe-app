@@ -30,7 +30,7 @@ namespace Cookie_Recipe.Views
 
             foreach (var choice in choices)
             {
-                Console.WriteLine(ingredients[choice - 1]);
+                Console.WriteLine(ingredients[choice - 1].GetInstruction());
             }
 
             Console.WriteLine();
