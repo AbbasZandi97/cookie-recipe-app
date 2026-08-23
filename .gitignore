@@ -16,3 +16,5 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+/project-explanation.txt
+
