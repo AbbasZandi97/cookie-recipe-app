@@ -39,6 +39,8 @@ namespace Cookie_Recipe.Controllers
 
             Printer.PrintRecipe(selectedIngredients);
 
+            Printer.AskForSave();
+
             // other parts of the program to be completed
         }
 

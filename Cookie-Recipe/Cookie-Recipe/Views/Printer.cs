@@ -35,5 +35,10 @@ namespace Cookie_Recipe.Views
 
             Console.WriteLine();
         }
+
+        public static void AskForSave()
+        {
+            Console.Write("Save the recipe ? (Y/N) : ");
+        }
     }
 }
