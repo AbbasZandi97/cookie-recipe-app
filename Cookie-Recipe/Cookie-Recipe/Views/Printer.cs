@@ -24,13 +24,13 @@ namespace Cookie_Recipe.Views
         }
 
 
-        public static void PrintRecipe(List<Ingredient> selectedIngredients)
+        public static void PrintRecipe(HashSet<int> choices, List<Ingredient> ingredients)
         {
             Console.WriteLine("\nRecipe added: ");
 
-            foreach (var ingredient in selectedIngredients)
+            foreach (var choice in choices)
             {
-                Console.WriteLine(ingredient.GetInstruction());
+                Console.WriteLine(ingredients[choice - 1]);
             }
 
             Console.WriteLine();
