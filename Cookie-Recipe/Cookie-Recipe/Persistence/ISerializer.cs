@@ -7,8 +7,8 @@ namespace Cookie_Recipe.Persistence
 {
     internal interface ISerializer
     {
-        void Serialize(List<Ingredient> ingredients);
+        void Serialize(HashSet<int> ingredientIds);
 
-        object Deserialize(List<Ingredient> ingredients);
+        HashSet<int> Deserialize();
     }
 }
