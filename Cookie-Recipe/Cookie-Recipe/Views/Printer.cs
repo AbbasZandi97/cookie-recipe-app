@@ -38,7 +38,13 @@ namespace Cookie_Recipe.Views
 
         public static void AskForSave()
         {
-            Console.Write("Save the recipe ? (Y/N) : ");
+            Console.Write("Save the Recipe ? (Y/N) : ");
+        }
+
+        public static void PrintInvalidInput()
+        {
+            Console.WriteLine("Invalid input.");
+            Console.WriteLine("Try again.");
         }
     }
 }
