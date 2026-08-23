@@ -1,5 +1,6 @@
 ﻿using Cookie_Recipe.Input;
 using Cookie_Recipe.Models;
+using Cookie_Recipe.Persistence;
 using Cookie_Recipe.Views;
 
 namespace Cookie_Recipe.Controllers
@@ -8,7 +9,7 @@ namespace Cookie_Recipe.Controllers
     {
         private InputHandler inputHandler;
         private List<Ingredient> ingredients;
-
+        
         public Service()
         {
             inputHandler = new InputHandler();
@@ -31,17 +32,22 @@ namespace Cookie_Recipe.Controllers
         public void StartApp()
         {
             Printer.PrintMenu(ingredients);
+            
+            // repetitive values must not be counted as inputs
+            // so we use HashSet which holds inputs as INT (NUMBER)
             var inputs = GetUserInput();
 
-            // mapping selected items in numbers to real ingredients
-            List<Ingredient> selectedIngredients =
-                GetSelectedIngredietns(inputs);
-
-            Printer.PrintRecipe(selectedIngredients);
+            // Recipe is made of selected ingredients
+            // these ingredients must be saved for next use if user wants to save.
+            Printer.PrintRecipe(inputs, ingredients);
 
             Printer.AskForSave();
 
-            // other parts of the program to be completed
+            bool saveTheRecipe = inputHandler.DoesUserWantToSave();
+
+            if (saveTheRecipe) Save(inputs);
+
+            
         }
 
         
@@ -68,16 +74,19 @@ namespace Cookie_Recipe.Controllers
 
         }
 
-        private List<Ingredient> GetSelectedIngredietns(HashSet<int> inputs)
+        private void Save(HashSet<int> inputs)
         {
-            var selectedIngredients = new List<Ingredient>();
+            // based on project needs, saving format must be set here.
+            Format format = Format.JSON;
 
-            foreach (int id in inputs)
-            {
-                selectedIngredients.Add(ingredients[id - 1]);
-            }
+            if (format == Format.JSON)
+                new JsonIngredientSerializer().Serialize(inputs);
 
-            return selectedIngredients;
+            if (format == Format.TXT)
+                new TxtSerializer().Serialize(inputs);
+
         }
+
+
     }
 }
