@@ -2,7 +2,7 @@ namespace Cookie_Recipe.Models
 {
     internal class Butter : Ingredient
     {
-        public Butter() : base("Butter", 3)
+        public Butter(string name, int id) : base(name, id)
         {
         }
 

@@ -2,7 +2,7 @@ namespace Cookie_Recipe.Models
 {
     internal class Cardamom : Ingredient
     {
-        public Cardamom() : base("Cardamom", 6)
+        public Cardamom(string name, int id) : base(name, id)
         {
         }
 

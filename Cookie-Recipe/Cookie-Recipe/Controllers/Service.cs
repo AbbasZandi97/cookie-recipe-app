@@ -17,14 +17,14 @@ namespace Cookie_Recipe.Controllers
             // if a new ingredient is added to the project, an object of it must be added here also.
             ingredients = new List<Ingredient>
             {
-                new Butter(),
-                new Sugar(),
-                new WheatFlour(),
-                new CocoaPowder(),
-                new Cinnamon(),
-                new Chocolate(),
-                new Cardamom(),
-                new CoconutFlour()
+                new Butter("Butter", 1),
+                new Sugar("Sugar", 2),
+                new WheatFlour("Wheat Flour", 3),
+                new CocoaPowder("Cocoa Powder", 4),
+                new Cinnamon("Cinnamon", 5),
+                new Chocolate("Chocolate", 6),
+                new Cardamom("Cardamom", 7),
+                new CoconutFlour("Coconut Flour", 8)
             };
         }
 

@@ -2,7 +2,7 @@ namespace Cookie_Recipe.Models
 {
     internal class CocoaPowder : Ingredient
     {
-        public CocoaPowder() : base("Cocoa Powder", 8)
+        public CocoaPowder(string name, int id) : base(name, id)
         {
         }
 

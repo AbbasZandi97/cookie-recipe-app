@@ -2,7 +2,7 @@ namespace Cookie_Recipe.Models
 {
     internal class WheatFlour : Ingredient
     {
-        public WheatFlour() : base("Wheat Flour", 1)
+        public WheatFlour(string name, int id) : base(name, id)
         {
         }
 
