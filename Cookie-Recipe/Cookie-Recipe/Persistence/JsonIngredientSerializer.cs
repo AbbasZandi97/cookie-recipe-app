@@ -19,5 +19,9 @@ namespace Cookie_Recipe.Persistence
             return JsonSerializer.Deserialize<HashSet<int>>(json);
         }
 
+        public bool CheckExistence()
+        {
+            return File.Exists("ingredientIds.json");
+        }
     }
 }
