@@ -20,7 +20,7 @@ namespace Cookie_Recipe.Input
                 
                 if (input?.ToLower() == "q") return null;
 
-                Console.WriteLine("Please enter a valid ID.");
+                Printer.PrintInvalidInput();
             }
         }
 
