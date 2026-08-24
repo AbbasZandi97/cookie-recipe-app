@@ -26,11 +26,21 @@ namespace Cookie_Recipe.Views
 
         public static void PrintRecipe(HashSet<int> choices, List<Ingredient> ingredients)
         {
-            Console.WriteLine("\nRecipe added: ");
-
-            foreach (var choice in choices)
+            if (choices.Count != 0)
             {
-                Console.WriteLine(ingredients[choice - 1].GetInstruction());
+                Console.WriteLine("\nRecipe added: ");
+
+                foreach (var choice in choices)
+                {
+                    Console.WriteLine(ingredients[choice - 1].GetInstruction());
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("You did not add anything to your Recipe.");
+                Console.WriteLine("There's nothing to be printed.");
+                Console.WriteLine("Next time, add some delicious ingredients to your Recipe.");
             }
 
             Console.WriteLine();
@@ -46,5 +56,18 @@ namespace Cookie_Recipe.Views
             Console.WriteLine("Invalid input.");
             Console.WriteLine("Try again.");
         }
+
+        public static void PrintSavedRecipe(HashSet<int> savedItems, List<Ingredient> ingredients)
+        {
+            Console.WriteLine("Saved Recipe: ");
+
+            foreach (var item in savedItems)
+            {
+                Console.WriteLine(ingredients[item - 1].GetInstruction());
+            }
+
+            Console.WriteLine();
+        }
+
     }
 }
