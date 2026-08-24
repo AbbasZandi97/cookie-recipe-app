@@ -9,12 +9,24 @@ namespace Cookie_Recipe.Controllers
     {
         private InputHandler inputHandler;
         private List<Ingredient> ingredients;
-        
+        Format format;
+
+        List<ISerializer> savingFileFormats;
+
         public Service()
         {
             inputHandler = new InputHandler();
 
-            
+            // based on project needs, saving format must be set here.
+            format = Format.TXT;
+
+            // if for any reson a new format will be needed, it must be added here
+            savingFileFormats = new List<ISerializer>
+            {
+                new JsonIngredientSerializer(),
+                new TxtSerializer()
+            };
+
             // if a new ingredient is added to the project, an object of it must be added here also.
             ingredients = new List<Ingredient>
             {
@@ -31,6 +43,9 @@ namespace Cookie_Recipe.Controllers
 
         public void StartApp()
         {
+            // At the beginning of the program, the app must check for any previous saved recipes
+            Load();
+
             Printer.PrintMenu(ingredients);
             
             // repetitive values must not be counted as inputs
@@ -41,12 +56,17 @@ namespace Cookie_Recipe.Controllers
             // these ingredients must be saved for next use if user wants to save.
             Printer.PrintRecipe(inputs, ingredients);
 
-            Printer.AskForSave();
+            // Before saving, Recipe must be filled with ingredients otherwise save option
+            // does not make any sense
+            if (inputs.Count != 0)
+            {
+                Printer.AskForSave();
 
-            bool saveTheRecipe = inputHandler.DoesUserWantToSave();
+                bool saveTheRecipe = inputHandler.DoesUserWantToSave();
 
-            if (saveTheRecipe) Save(inputs);
-
+                if (saveTheRecipe) Save(inputs);
+            }
+            
             
         }
 
@@ -76,8 +96,6 @@ namespace Cookie_Recipe.Controllers
 
         private void Save(HashSet<int> inputs)
         {
-            // based on project needs, saving format must be set here.
-            Format format = Format.JSON;
 
             if (format == Format.JSON)
                 new JsonIngredientSerializer().Serialize(inputs);
@@ -87,6 +105,19 @@ namespace Cookie_Recipe.Controllers
 
         }
 
+        private void Load()
+        {
+            var savedItems = new HashSet<int>();
 
+            foreach (var format in savingFileFormats)
+            {
+                if (format.CheckExistence())
+                {
+                    savedItems = format.Deserialize();
+                    Printer.PrintSavedRecipe(savedItems, ingredients);
+                }
+
+            }
+        }
     }
 }
