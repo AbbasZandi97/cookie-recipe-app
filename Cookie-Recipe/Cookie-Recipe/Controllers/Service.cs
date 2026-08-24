@@ -98,10 +98,10 @@ namespace Cookie_Recipe.Controllers
         {
 
             if (format == Format.JSON)
-                new JsonIngredientSerializer().Serialize(inputs);
+                savingFileFormats[0].Serialize(inputs);
 
             if (format == Format.TXT)
-                new TxtSerializer().Serialize(inputs);
+                savingFileFormats[1].Serialize(inputs);
 
         }
 
