@@ -29,10 +29,10 @@ namespace Cookie_Recipe.Input
         {
             while (true)
             {
-                string answer = Console.ReadLine();
+                string? answer = Console.ReadLine();
 
-                if (answer.ToUpper() == "Y") return true;
-                if (answer.ToUpper() == "N") return false;
+                if (answer?.ToUpper() == "Y") return true;
+                if (answer?.ToUpper() == "N") return false;
 
                 Printer.PrintInvalidInput();
             }
