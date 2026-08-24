@@ -1,9 +1,4 @@
-﻿using Cookie_Recipe.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cookie_Recipe.Persistence
+﻿namespace Cookie_Recipe.Persistence
 {
     internal class TxtSerializer : ISerializer
     {
@@ -35,6 +30,10 @@ namespace Cookie_Recipe.Persistence
             return ids;
 
         }
-        
+
+        public bool CheckExistence()
+        {
+            return File.Exists("ingredientIds.txt");
+        }
     }
 }
